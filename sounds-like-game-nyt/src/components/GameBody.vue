@@ -1,9 +1,3 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
-
 <template>
   <h1>Sounds Like.. Game!</h1>
   <p>
@@ -36,7 +30,49 @@ defineProps<{
     <div class="right-wrong-guesses">
     </div>
   </div>
+
+  <div id="guess-grid-full">
+    <div class="grid">
+
+    </div>
+  </div>
 </template>
+
+<script lang="ts">
+
+export default {
+  name: 'GameBody',
+  methods:{
+    drawBox(GAME_CONTAINER: Element, row: number, col: number) {
+      const BOX = document.createElement('div');
+      BOX.className = 'box';
+      BOX.id = `box${row}${col}`;
+
+      GAME_CONTAINER.appendChild(BOX);
+      return BOX;
+
+    },
+    drawGrid(GAME_CONTAINER: Element): void {
+      const GRID = document.createElement('div');
+      GRID.className = 'grid';
+
+      for (let i = 0; i < 5; i ++) {
+        for (let j = 0; j < 5; j ++) {
+          this.drawBox(GRID, i, j);
+        }
+      }
+
+      GAME_CONTAINER.appendChild(GRID);
+    },
+  },
+
+  created() {
+    const GAME = this.$guess-grid-full
+    this.drawGrid(GAME);
+  },
+};
+
+</script>
 
 <style>
 .clue-guess {
