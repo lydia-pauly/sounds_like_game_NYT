@@ -67,7 +67,7 @@ export default {
   },
 
   created() {
-    const GAME = this.$guess-grid-full
+    const GAME = this.${guess-grid-full}
     this.drawGrid(GAME);
   },
 };
